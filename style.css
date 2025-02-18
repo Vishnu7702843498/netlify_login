@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f2f5;
+    font-family: Arial, sans-serif;
+}
+
+.login-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;  /* Add minimum height */
+}
+
+.input-group {
+    position: relative;
+    margin: 20px 0;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+}
+
+label {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -10px;
+    left: 5px;
+    font-size: 14px;
+    background: white;
+    padding: 0 5px;
+    color: #4285f4;
+}
+
+button {
+    width: 200px;
+    padding: 10px;
+    background: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;  /* Changed from fixed to absolute */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.15s ease-out; /* Make movement faster */
+}
+
+button.movable {
+    cursor: none; /* Hide cursor when hovering movable button */
+}
+
+button.movable:hover {
+    transform: translate(
+        clamp(-200%, calc(-50% + var(--escape-x, 0) * 1px), 200%),
+        clamp(-200px, var(--escape-y, 0) * 1px, 200px)
+    );
+}
+
+#error-message {
+    color: red;
+    margin-top: 10px;
+    text-align: center;
+}
